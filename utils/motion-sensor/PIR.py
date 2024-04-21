@@ -1,0 +1,1 @@
+# Code for the PIR sensor to detect motion

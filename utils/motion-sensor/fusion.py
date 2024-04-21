@@ -1,0 +1,1 @@
+# A fusion of the microwave and PIR sensors to detect motion (AND logic)
