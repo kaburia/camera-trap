@@ -1,5 +1,5 @@
 # Camera-trap
-From Edge to Cloud. A camera trap system.
+From Edge to Cloud: A camera trap system.
 
 This repository contains the code and design for our camera trap system.
 ### Our System
@@ -14,7 +14,7 @@ A fusion of PIR and Microwave sensor
 (Working principle and significance)
 
 ### Person Detection
-(Working principle and significance)
+[(Working principle and significance)](https://github.com/kaburia/camera-trap/tree/main/person-detection)
 
 ### GSM module
 (Working principle and significance)
