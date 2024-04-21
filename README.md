@@ -23,8 +23,8 @@ A fusion of PIR and Microwave sensor
 
 ### Video Processing
 (What happens to the videos uploaded to the database)
-- ![Pose Model]([url](https://github.com/Antony-gitau/AJA-pose))
-- [Gait Model]([url](https://github.com/kaburia/animal-poses4population))
+- [Pose Model](https://github.com/Antony-gitau/AJA-pose)
+- [Gait Model](https://github.com/kaburia/animal-poses4population)
 - (An alternative multimodal approach)
 
 
