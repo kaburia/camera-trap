@@ -2,7 +2,7 @@
 From Edge to Cloud: A camera trap system.
 
 This repository contains the code and design for our camera trap system.
-### Our System
+### [Our System](https://docs.google.com/document/d/1WPm2xWWwLzJluhMEWMM7Aj1WGRfoWpEMaXbJTH9pCGA/edit#heading=h.26j9pw1665s3)
 - An OpenMv Camera (The microcontroller of choice)
 - A GSM Module (To send collected data from edge to cloud)
 - A PIR + Microwave Sensor (Motion sensors a fusion of both to reduce false triggers)
