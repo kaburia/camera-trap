@@ -1,0 +1,3 @@
+CAD and PCB files
+- The design schematics
+- The Mechanical parts
