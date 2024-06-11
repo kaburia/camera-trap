@@ -1,6 +1,11 @@
 # Edge Impulse - OpenMV Object Detection Example
 
-import sensor, image, time, os, tf, math, uos, gc
+import sensor, image, time, os, tf, math, uos, gc,os
+
+
+base_dir = "/person-detection/"
+model_path = base_dir + "trained.tflite"
+labels_path = base_dir + "labels.txt"
 
 sensor.reset()                         # Reset and initialize the sensor.
 sensor.set_pixformat(sensor.RGB565)    # Set pixel format to RGB565 (or GRAYSCALE)
@@ -10,18 +15,19 @@ sensor.skip_frames(time=2000)          # Let the camera adjust.
 
 net = None
 labels = None
-min_confidence = 0.5
+min_confidence = 0.6
+
 
 try:
     # load the model, alloc the model file on the heap if we have at least 64K free after loading
-    net = tf.load("trained.tflite", load_to_fb=uos.stat('trained.tflite')[6] > (gc.mem_free() - (64*1024)))
+    net = tf.load(model_path, load_to_fb=uos.stat(model_path)[6] > (gc.mem_free() - (64*1024)))
 except Exception as e:
     raise Exception('Failed to load "trained.tflite", did you copy the .tflite and labels.txt file onto the mass-storage device? (' + str(e) + ')')
 
 try:
-    labels = [line.rstrip('\n') for line in open("labels.txt")]
+    labels = [line.rstrip('\n') for line in open(labels_path)]
 except Exception as e:
-    raise Exception('Failed to load "labels.txt", did you copy the .tflite and labels.txt file onto the mass-storage device? (' + str(e) + ')')
+    raise Exception(f'Failed to load "labels.txt", did you copy the .tflite and labels.txt file onto the mass-storage device? (' + str(e) + ')')
 
 colors = [ # Add more colors if you are detecting more than 7 types of classes at once.
     (255,   0,   0),
