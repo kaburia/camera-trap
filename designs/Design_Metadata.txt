@@ -1,3 +1,5 @@
-CAD and PCB files
-- The design schematics
-- The Mechanical parts
+CAD and PCB files (designs directory)
+- The design schematics (subdirectory)
+        - The circuit design files
+- The Mechanical parts (subdirectory)
+        - CAD files (parts and assembly)
