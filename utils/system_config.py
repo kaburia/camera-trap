@@ -1,3 +1,6 @@
+import pyb
+
+
 '''
 Module to define what happens during:
 1. Sleep mode (Timed and triggered)
@@ -7,6 +10,7 @@ Module to define what happens during:
 5. Record video (defaults to 10 seconds)/ take a picture
 6. Transmit data to the cloud
 '''
+
 
 # Configuring MCU for sleep mode
 def sleep_mode():
@@ -34,13 +38,19 @@ def wake_up():
     pass
 
 # Configuring the real time clock
-def set_rtc():
+def set_rtc(set_time):
     '''
     Function to set the real time clock
     This function can be called only when system initial boot up
     This function will set the real time clock to the current time
+    set_time: tuple of the current time (year, month, day, weekday, hour, minute, second, subsecond)
     '''
-    pass
+    # Set the RTC time
+    rtc = pyb.RTC()
+    # Set the RTC time to the current time
+    return rtc.datetime() # (year, month, day, weekday, hour, minute, second, subsecond)
+
+
 
 # Configuring the motion sensor
 def motion_sensor():
