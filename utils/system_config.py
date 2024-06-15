@@ -1,4 +1,5 @@
 import pyb
+import time
 
 
 '''
@@ -85,3 +86,17 @@ def transmit_data():
     Zigbee protocol/RF protocol/IR protocol
     '''
     pass
+
+# Check the current time returns a boolean if after 6pm
+def check_time():
+    '''
+    Function to check the current time
+    This function will check the current time
+    The function will return a boolean value to indicate if the current time is after 6pm
+    '''
+    current_time = time.localtime()
+    hour = current_time[3]
+    if hour >= 18:
+        return True
+    else:
+        return False
