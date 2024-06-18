@@ -1,1 +1,0 @@
-# Code to initialize the GSM module and send dummy images and videos
