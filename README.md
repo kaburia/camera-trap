@@ -28,5 +28,5 @@ A fusion of PIR and Microwave sensor
 - (An alternative multimodal approach)
 
 ### Battery Monitoring
-The voltage divider used has R1= 220ohm and R2=1Kohm 
+The voltage divider used has R1= 220ohm and R2=1Kohm. 
 The max voltage is 3.9V and minimum is 2.5V
