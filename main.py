@@ -15,29 +15,31 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 from utils.system_config import SetupSystem
+settings = SetupSystem()
 
 # set up the system
 # Set up the real time clock
-SetupSystem.set_rtc((2024, 7, 25, 18, 10, 0, 0, 0))
+settings.set_rtc((2024, 7, 25, 18, 10, 0, 0, 0))
 
 # Initialize the camera sensor
-SetupSystem.init_camera()
+settings.init_camera()
 
 # Infinite loop to check for motion
 while True:
     # Check if motion is detected
-    if SetupSystem.motion_sensed():
+    if settings.motion_sensed():
         # Wake up the camera
-        SetupSystem.wake_up()
+        settings.wake_up()
         # Check time
-        if SetupSystem.check_time(): # after 6pm
+        if settings.check_time(): # after 6pm
             # Transmit the Data
             
             # Sleep the system till the next day (for 12 hours)
-            SetupSystem.sleep_mode(timer=True)
+            # settings.sleep_mode(timer=True)
+            pass
         else: # before 6pm
             # record the video
-            SetupSystem.record_video()
+            settings.record_video()
     else:
         # trigger sleep mode
-        SetupSystem.sleep_mode(trigger=True)
+        settings.sleep_mode(trigger=True)
