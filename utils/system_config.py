@@ -13,6 +13,30 @@ Module to define what happens during:
 6. Transmit data to the cloud
 '''
 class SetupSystem:
+    # turn led on and off green and blue
+    def led_on(self, color=None):
+        '''
+        Function to turn on the LED
+        This function will turn on the LED based on the color
+        color: string value to indicate the color of the LED (green/blue)
+        '''
+        if color == "green":
+            # if other color is on turn it off
+            pyb.LED(3).off()
+            pyb.LED(1).off()
+            pyb.LED(2).on()
+        elif color == "blue":
+            # if other color is on turn it off
+            pyb.LED(2).off()
+            pyb.LED(1).off()
+            pyb.LED(3).on()
+        elif color is None:
+            pyb.LED(1).off()
+            pyb.LED(2).off()
+            pyb.LED(3).off()
+        else:
+            raise ValueError("Invalid color")
+
     # Configuring the real time clock
     def set_rtc(self, set_time):
         '''
@@ -24,7 +48,7 @@ class SetupSystem:
         # Set the RTC time
         rtc = pyb.RTC()
         # Set the RTC time to the current time
-        return rtc.datetime() # (year, month, day, weekday, hour, minute, second, subsecond)
+        return rtc.datetime(set_time) # (year, month, day, weekday, hour, minute, second, subsecond)
 
     # Check the current time returns a boolean if after 6pm
     def check_time(self):
@@ -77,7 +101,7 @@ class SetupSystem:
         The PIR sensor will be used to detect motion
         Returns a boolean value to indicate motion
         '''
-        pirSensor = pyb.Pin('P7', pyb.Pin.IN, pyb.Pin.PULL_DOWN)
+        pirSensor = pyb.Pin('P7', pyb.Pin.IN)#pyb.Pin.PULL_DOWN
         if pirSensor.value() == 1:
             return True
         else:
@@ -105,6 +129,8 @@ class SetupSystem:
         The video will be stored in the SD card
         The default duration of the video is 10 seconds
         '''
+        # turn on blue led to indicate recording
+        self.led_on("blue")
         # Get the current time
         current_time = time.strftime("%Y%m%d-%H%M%S", time.localtime()) + ".gif"
         print("Current Time: ", current_time)
@@ -153,7 +179,7 @@ class SetupSystem:
             # Put the camera to sleep until an event occurs
             sensor.sleep(True)
             # Put the board to sleep
-            pyb.stop()
+            # pyb.stop()
         
     # Configuring MCU for wake up mode
     def wake_up(self):
@@ -166,7 +192,11 @@ class SetupSystem:
             - Set the configurations for the camera sensor
         '''
         # Wake up the camera from sleep mode
-        sensor.sleep(False)
+        try:
+            sensor.sleep(False)
+        except Exception as e:
+            print("Failed to wake up the camera: ", e)
+            
         # Initialize the camera sensor
         # init_camera()
 
